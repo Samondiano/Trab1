@@ -1,6 +1,6 @@
 <%-- 
-    Document   : quest1
-    Created on : 16/03/2017, 21:43:46
+    Document   : quest5
+    Created on : 23/03/2017, 19:29:22
     Author     : Samon
 --%>
 
@@ -9,13 +9,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Questão 5</title>
     </head>
     <body>
-        <h1>Questao 01</h1>
-        <form action="quest1" method="POST">
+        <h1>Questão 5</h1>
+        <form  action="quest5" method="POST">
+            <label>Digite um número: </label>
             <input type="text" name="numero"/>
-            <input type="submit" name="Enviar"/>
+            <input type="submit" value="Enviar"/>
         </form>
     </body>
 </html>

@@ -9,7 +9,7 @@
     </head>
     <body>
         <h1>Questão 03</h1>
-        <form  action="questao3" method="POST">
+        <form  action="quest3" method="POST">
             <label for="idade">Idade</label>
             <br>
             <input type="text"  name="idade" placeholder="Digite sua idade..."/>

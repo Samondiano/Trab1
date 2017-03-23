@@ -13,12 +13,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 /**
  *
  * @author Samon
  */
-@WebServlet(name = "quest4", urlPatterns = {"/quest4"})
-public class quest4 extends HttpServlet {
+@WebServlet(name = "quest12", urlPatterns = {"/quest12"})
+public class quest12 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,42 +32,43 @@ public class quest4 extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
-        Float nota = 0.0f; 
-        Float notaExame = 0.0f;          
-        String situacao; 
-        if(request.getParameter("nota") != null){ 
-            nota = Float.valueOf(request.getParameter("nota")); 
-            if(nota < 7) 
-                situacao = "Exame";
-            else 
-                situacao = "Aprovado"; 
-        }else{           
-            notaExame = Float.valueOf(request.getParameter("notaexame")); 
-            if(notaExame > 5)
-                situacao = "Aprovado no exame";
-            else
-                situacao = "Reprovado no exame";
+        
+                int idMaior = 0, aux = 0, max = 5;
+                boolean encontrei = false;
+                
+                int idades[] = new int[max];
+                String nomes[] = new String[max];
+                
+                aux = 1;
+                for (int x = 0; x < max; x++){
+                    nomes[x] = request.getParameter("nome"+aux);
+                    idades[x] = Integer.valueOf(request.getParameter("idade"+aux));
+                    aux++;
+                }
+                                
+                while (encontrei==false){
+                    for (int y = 0; y<max-1; y++){
+                        encontrei = true;
+                        if (idades[idMaior] < idades[y+1]) {
+                            idMaior = y+1;
+                            encontrei = false;
+                        }
+                    }
+                }
+                
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet Questao12</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1> A maior nota foi do "+nomes[idMaior]+" e sua nota foi "+idades[idMaior]+". </h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
-        
-        if(situacao.equals("Exame")) 
-            response.sendRedirect("q04.jsp?situacao="+situacao);        
-            response.setContentType("text/html;charset=UTF-8");
-            try (PrintWriter out = response.getWriter()) {
-                out.println("<title>Servlet Questao4</title>");            
-                out.println("</head>");
-                out.println("<body>");
-                if(situacao.equals("Aprovado")) 
-                    out.println("<h1>Aluno aprovado sem necessidade de exame</h1>");
-                else if(situacao.equals("Aprovado no exame"))
-                    out.println("<h1>Aluno aprovado no exame</h1>");
-                else 
-                    out.println("<h1>Aluno reprovado no exame</h1>");
-                out.println("</body>"); 
-                out.println("</html>");
-            }
- 
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

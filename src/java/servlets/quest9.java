@@ -17,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Samon
  */
-@WebServlet(name = "quest4", urlPatterns = {"/quest4"})
-public class quest4 extends HttpServlet {
+@WebServlet(name = "quest9", urlPatterns = {"/quest9"})
+public class quest9 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,42 +31,44 @@ public class quest4 extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
-        Float nota = 0.0f; 
-        Float notaExame = 0.0f;          
-        String situacao; 
-        if(request.getParameter("nota") != null){ 
-            nota = Float.valueOf(request.getParameter("nota")); 
-            if(nota < 7) 
-                situacao = "Exame";
-            else 
-                situacao = "Aprovado"; 
-        }else{           
-            notaExame = Float.valueOf(request.getParameter("notaexame")); 
-            if(notaExame > 5)
-                situacao = "Aprovado no exame";
-            else
-                situacao = "Reprovado no exame";
+        
+        int n1 = Integer.valueOf(request.getParameter("n1"));
+        int n2 = Integer.valueOf(request.getParameter("n2"));
+        int n3 = Integer.valueOf(request.getParameter("n3"));
+        int soma = n1+n2+n3;
+        String msg;
+        
+        if (n1 == 0 || n2 == 0 || n3 == 0){
+            response.sendRedirect("q01.jsp");
         }
         
-        if(situacao.equals("Exame")) 
-            response.sendRedirect("q04.jsp?situacao="+situacao);        
-            response.setContentType("text/html;charset=UTF-8");
-            try (PrintWriter out = response.getWriter()) {
-                out.println("<title>Servlet Questao4</title>");            
-                out.println("</head>");
-                out.println("<body>");
-                if(situacao.equals("Aprovado")) 
-                    out.println("<h1>Aluno aprovado sem necessidade de exame</h1>");
-                else if(situacao.equals("Aprovado no exame"))
-                    out.println("<h1>Aluno aprovado no exame</h1>");
-                else 
-                    out.println("<h1>Aluno reprovado no exame</h1>");
-                out.println("</body>"); 
-                out.println("</html>");
-            }
- 
+        if (soma >= 10){
+            msg = "A soma dos numeros foi maior que 10";
+        }else if(soma < 0){
+            msg = "A soma dos numeros deu negativo";
+        }else{
+            msg = "Não foi maior que 10";
+        }
+            
+      
         
+        
+        
+        
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet Questao9</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1> Resultado </h1>");
+            out.println(msg);
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

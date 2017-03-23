@@ -16,7 +16,7 @@
         <% if(situacao == null) {%> 
         <h1>Questão 4</h1> 
         <label> Sua Nota </label> 
-        <form  action="questao4" method="POST">  
+        <form  action="quest4" method="POST">  
             <input type="text" name="nota"/> 
             <input type="submit" value="Enviar"/> 
         </form> 

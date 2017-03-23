@@ -17,8 +17,14 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Samon
  */
-@WebServlet(name = "quest4", urlPatterns = {"/quest4"})
-public class quest4 extends HttpServlet {
+@WebServlet(name = "quest10", urlPatterns = {"/quest10"})
+public class quest10 extends HttpServlet {
+ public int fatorial(int n){
+        if(n <= 1)
+            return 1;
+        else
+            return n*fatorial(n-1);
+    }
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,42 +37,22 @@ public class quest4 extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
-        Float nota = 0.0f; 
-        Float notaExame = 0.0f;          
-        String situacao; 
-        if(request.getParameter("nota") != null){ 
-            nota = Float.valueOf(request.getParameter("nota")); 
-            if(nota < 7) 
-                situacao = "Exame";
-            else 
-                situacao = "Aprovado"; 
-        }else{           
-            notaExame = Float.valueOf(request.getParameter("notaexame")); 
-            if(notaExame > 5)
-                situacao = "Aprovado no exame";
-            else
-                situacao = "Reprovado no exame";
+        
+        int n = Integer.valueOf(request.getParameter("numero"));
+        
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet Questao10</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>O fatorial de " + n + " eh: "+ fatorial(n) +"</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
-        
-        if(situacao.equals("Exame")) 
-            response.sendRedirect("q04.jsp?situacao="+situacao);        
-            response.setContentType("text/html;charset=UTF-8");
-            try (PrintWriter out = response.getWriter()) {
-                out.println("<title>Servlet Questao4</title>");            
-                out.println("</head>");
-                out.println("<body>");
-                if(situacao.equals("Aprovado")) 
-                    out.println("<h1>Aluno aprovado sem necessidade de exame</h1>");
-                else if(situacao.equals("Aprovado no exame"))
-                    out.println("<h1>Aluno aprovado no exame</h1>");
-                else 
-                    out.println("<h1>Aluno reprovado no exame</h1>");
-                out.println("</body>"); 
-                out.println("</html>");
-            }
- 
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

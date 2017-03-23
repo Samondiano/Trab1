@@ -1,7 +1,7 @@
 <%-- 
     Document   : newjsp
     Created on : 16/03/2017, 22:59:13
-    Author     : Laboratorio
+    Author     : Samon
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
